@@ -1,0 +1,27 @@
+﻿<Window x:Class="TidalMusicPlayer.Content"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TidalMusicPlayer"
+        mc:Ignorable="d"
+        xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        Loaded="Window_Loaded"        
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        Title="Tidal Music Charts" Height="640" Width="1020" FontFamily="Century Gothic" WindowStartupLocation="CenterScreen">
+    <Grid>
+
+        <cefSharp:ChromiumWebBrowser x:Name="browerContent" Address="https://listen.tidal.com/" LoadingStateChanged="BrowerContent_LoadingStateChanged" LoadError="Load_Error" Loaded="Finished_Loading"/>
+        <Grid Visibility="Visible" Opacity="30" x:Name="loading" HorizontalAlignment="Left" Height="609" VerticalAlignment="Top" Width="1012">
+            <Label Content="please wait" HorizontalAlignment="Left" Margin="460,284,0,0" VerticalAlignment="Top" FontSize="18"/>
+            <Image gif:ImageBehavior.AnimatedSource="/TidalMusicPlayer;component/assets/preloader.gif" HorizontalAlignment="Left" Height="265" Margin="332,120,0,0" VerticalAlignment="Top" Width="360" Source="/TidalMusicPlayer;component/assets/preloader.gif"/>
+
+        </Grid>
+        <Grid x:Name="loadingError" Visibility="Hidden" HorizontalAlignment="Left" Height="609" VerticalAlignment="Top" Width="1012">
+            <Label Content="an error ocured while loading charts" HorizontalAlignment="Left" Margin="264,210,0,0" VerticalAlignment="Top" Width="504" FontSize="28"/>
+            <Label x:Name="errorCode" Content="Error Code: " HorizontalAlignment="Left" Margin="308,280,0,0" VerticalAlignment="Top" Width="354"/>
+            <Label x:Name="errorDesc" Content="Error  Description: " HorizontalAlignment="Left" Margin="308,310,0,0" VerticalAlignment="Top" Width="447" Height="25"/>
+            <Button Content="Click here to retry" HorizontalAlignment="Left" Margin="264,371,0,0" VerticalAlignment="Top" Width="108" Cursor="Hand" BorderThickness="0,0,0,1" Background="{x:Null}" BorderBrush="#FF0070BD" Foreground="#FF0070BD" Padding="0,0,0,3" Click="Button_Click"/>
+        </Grid>
+    </Grid>
+</Window>
